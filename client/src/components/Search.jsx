@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Search = (props) => {
   const { query, onSearchClick, onChange } = this.props;
   return (
     <div className="search-bar">
-      <input className="form-control" type="text" value={query} onChange={onChange} />
-      <button type="button" className="btn search" onClick={onSearchClick}>
+      <input className="form-control" type="text" />
+      <button type="button" className="btn search">
         {/* OnClick/onSearch function needed */}
       </button>
       <button type="button" className="btn happy">
@@ -18,9 +17,5 @@ const Search = (props) => {
     </div>
   );
 }
-
-Search.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-};
 
 export default Search;

@@ -23,6 +23,7 @@ class App extends React.Component {
 
   }
 
+  
   searchClick() {
     const { query } = this.state;
     return axios.get(`/search/${query}`)
@@ -32,7 +33,7 @@ class App extends React.Component {
           songs: response.data,
         });
       })
-      .catch(err => console.log(`Axios GET to /search/${query} error => `, err.message));
+      .catch(err => console.log(`Axios GET to /search${query} error => `, err.message));
   }
 
   handleChange(e) {
