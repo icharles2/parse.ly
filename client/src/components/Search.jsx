@@ -1,21 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types;'
+import PropTypes from 'prop-types';
 
 const Search = (props) => {
+  const { query, onSearchClick, onChange } = this.props;
   return (
     <div className="search-bar">
-      <input className="form-control" type="text" />
-      <button className="btn search">
+      <input className="form-control" type="text" value={query} onChange={onChange} />
+      <button type="button" className="btn search" onClick={onSearchClick}>
         {/* OnClick/onSearch function needed */}
       </button>
-      <button className="btn happy">
+      <button type="button" className="btn happy">
         {/* Happy Emoji button */}
       </button>
-      <button className ="btn sad">
+      <button type="button" className="btn sad">
         {/* Sad or Crying Emoji button */}
       </button>
     </div>
-  )
+  );
 }
 
 Search.propTypes = {

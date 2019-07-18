@@ -10,12 +10,13 @@ import VideoPlayer from './components/VideoPlayer.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       video: '',
       query: '',
-      videoList: [],
+      songs: [],
     };
+    this.searchClick = this.searchClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -23,27 +24,31 @@ class App extends React.Component {
   }
 
   searchClick() {
-    return axios.get('/search/artist').then((response) => {
-      this.setState({
-        videoList: response.data,
-      });
-    });
+    const { query } = this.state;
+    return axios.get(`/search/${query}`)
+      .then((response) => {
+        this.setState({
+          video: response.data[0].youtubelink,
+          songs: response.data,
+        });
+      })
+      .catch(err => console.log(`Axios GET to /search/${query} error => `, err.message));
   }
 
-  handleChange(e){
+  handleChange(e) {
     this.setState({
       query: e.target.value,
     });
   }
 
   render() {
-    const { video, query } = this.state;
+    const { video, query, songs } = this.state;
     return (
       <div>
         <nav className="navbar">
           <h1>Hello, world!</h1>
           <div className="searchbar">
-            <Search />
+            <Search query={query} onSearchClick={this.searchClick} onChange={this.handleChange} />
           </div>
         </nav>
         <div className="section">
